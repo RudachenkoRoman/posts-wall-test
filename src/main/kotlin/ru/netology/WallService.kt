@@ -7,7 +7,7 @@ internal class WallService(
 ) {
     fun add(post: Post): Post {
         post.copy(id = nextId)
-        posts += post
+        //posts += post
         nextId++
         return post
     }
