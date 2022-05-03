@@ -32,7 +32,6 @@ class WallServiceTest {
         )
         val result = service.add(add)
         assertNotNull(result)
-
     }
 
     @Test
@@ -206,7 +205,6 @@ class WallServiceTest {
                 postponedId = 0
             )
         )
-
         val update = Post(
             id = 55,
             ownerId = 166,
