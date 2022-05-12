@@ -231,5 +231,116 @@ class WallServiceTest {
         assertFalse(result)
     }
 
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        val service = WallService()
+        service.add(
+            Post(
+                id = 3,
+                ownerId = 125,
+                fromId = 336,
+                createdBy = 8999,
+                date = 24_02_2022,
+                text = "Hello world! I'm happy to live on this planet!",
+                replyOwnerId = 118,
+                replyPostId = 336,
+                friendsOnly = false,
+                copyright = "Материал предоставлен фондом по защите животных",
+                postType = "post",
+                signerId = 779,
+                canPin = true,
+                canDelete = true,
+                canEdit = false,
+                isPinned = true,
+                markedAsAds = false,
+                isFavorite = true,
+                postponedId = 0
+            )
+        )
+        service.createComment(
+            Comment(
+                id = 1,
+                fromId = 1,
+                date = 25_02_2022,
+                text = "Fantastic Post!!",
+                replyToUser = 1,
+                replyToComment = 1,
+                postId = 5
+            )
+        )
+    }
 
+    @Test
+    fun shouldAddComment() {
+        val service = WallService()
+        val addedPost1 = service.add(
+            Post(
+                id = 1,
+                ownerId = 125,
+                fromId = 336,
+                createdBy = 8999,
+                date = 24_02_2022,
+                text = "Hello world! I'm happy to live on this planet!",
+                replyOwnerId = 118,
+                replyPostId = 336,
+                friendsOnly = false,
+                copyright = "Материал предоставлен фондом по защите животных",
+                postType = "post",
+                signerId = 779,
+                canPin = true,
+                canDelete = true,
+                canEdit = false,
+                isPinned = true,
+                markedAsAds = false,
+                isFavorite = true,
+                postponedId = 0
+            )
+        )
+        val addedPost2 = service.add(
+            Post(
+                id = 3,
+                ownerId = 125,
+                fromId = 336,
+                createdBy = 8999,
+                date = 24_02_2022,
+                text = "Hello world! I'm happy to live on this planet!",
+                replyOwnerId = 118,
+                replyPostId = 336,
+                friendsOnly = false,
+                copyright = "Материал предоставлен фондом по защите животных",
+                postType = "post",
+                signerId = 779,
+                canPin = true,
+                canDelete = true,
+                canEdit = false,
+                isPinned = true,
+                markedAsAds = false,
+                isFavorite = true,
+                postponedId = 0
+            )
+        )
+        val comment = Comment(
+            id = 2,
+            fromId = 1,
+            date = 25_02_2022,
+            text = "Fantastic Post!!",
+            replyToUser = 1,
+            replyToComment = 1,
+            postId = addedPost1.id,
+
+        )
+
+        val twoComment = Comment(
+            id = 2,
+            fromId = 1,
+            date = 25_02_2022,
+            text = "Fantastic Post!!",
+            replyToUser = 1,
+            replyToComment = 1,
+            postId = addedPost2.id,
+        )
+
+        service.createComment(comment)
+        service.createComment(twoComment)
+    }
 }

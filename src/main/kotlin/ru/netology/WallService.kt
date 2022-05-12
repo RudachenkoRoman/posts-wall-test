@@ -2,9 +2,19 @@ package ru.netology
 
 internal class WallService(
     private var posts: Array<Post> = emptyArray(),
+    private var comments: Array<Comment> = emptyArray(),
     private var nextId: Int = 1
 
 ) {
+    fun createComment(comment: Comment) {
+    for (post in posts) {
+        if (post.id == comment.postId) {
+            comments += comment
+            return
+        }
+    }
+    throw PostNotFoundException("Такого поста не существует")
+}
     fun add(post: Post): Post {
         post.copy(id = nextId)
         posts += post
