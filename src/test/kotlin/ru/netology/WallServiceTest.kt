@@ -319,7 +319,7 @@ class WallServiceTest {
                 postponedId = 0
             )
         )
-        val comment = Comment(
+        val oneComment = Comment(
             id = 2,
             fromId = 1,
             date = 25_02_2022,
@@ -328,7 +328,7 @@ class WallServiceTest {
             replyToComment = 1,
             postId = addedPost1.id,
 
-        )
+            )
 
         val twoComment = Comment(
             id = 2,
@@ -340,7 +340,7 @@ class WallServiceTest {
             postId = addedPost2.id,
         )
 
-        service.createComment(comment)
+        service.createComment(oneComment)
         service.createComment(twoComment)
     }
 }
